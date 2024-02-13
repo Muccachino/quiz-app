@@ -1,36 +1,44 @@
 {
-    "questions": [
+    "allQuestions": [
         {
             "id": 1,
             "question": "test question 1",
-            "answer1": "answer1",
-            "answer2": "answer2",
-            "answer3": "answer3",
-            "answer4": "answer4"
+            "answers": [
+                {"answer1": "answer1"},
+                {"answer2": "answer2"},
+                {"answer3": "answer3"},
+                {"answer4": "answer4"}
+            ]
         },
         {
             "id": 2,
-            "question": "test question 1",
-            "answer1": "answer1",
-            "answer2": "answer2",
-            "answer3": "answer3",
-            "answer4": "answer4"
+            "question": "test question 2",
+            "answers": {
+                "answer1": "answer1",
+                "answer2": "answer2",
+                "answer3": "answer3",
+                "answer4": "answer4"
+            }
         },
         {
             "id": 3,
-            "question": "test question 1",
-            "answer1": "answer1",
-            "answer2": "answer2",
-            "answer3": "answer3",
-            "answer4": "answer4"
+            "question": "test question 3",
+            "answers": {
+                "answer1": "answer1",
+                "answer2": "answer2",
+                "answer3": "answer3",
+                "answer4": "answer4"
+            }
         },
         {
             "id": 4,
-            "question": "test question 1",
-            "answer1": "answer1",
-            "answer2": "answer2",
-            "answer3": "answer3",
-            "answer4": "answer4"
+            "question": "test question 4",
+            "answers": {
+                "answer1": "answer1",
+                "answer2": "answer2",
+                "answer3": "answer3",
+                "answer4": "answer4"
+            }
         }
     ]
 }
