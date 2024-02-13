@@ -24,5 +24,5 @@ export default function useQuestions() {
         connect();
       }, [setQuestions]);
 
-      return [questions]
+      return [questions, setQuestions];
 }

@@ -1,6 +1,6 @@
 
 import './App.css'
-import InteractiveList from './components/QuestionsList'
+import QuestionsList from './components/QuestionsList'
 import QuestionsProvider from './components/QuestionsProvider'
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
       <h1>Quiz</h1>
       <QuestionsProvider>
-        <InteractiveList/>
+        <QuestionsList/>
       </QuestionsProvider>
       
     </>

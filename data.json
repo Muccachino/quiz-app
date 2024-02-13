@@ -4,41 +4,41 @@
             "id": 1,
             "question": "test question 1",
             "answers": [
-                {"answer1": "answer1"},
-                {"answer2": "answer2"},
-                {"answer3": "answer3"},
-                {"answer4": "answer4"}
+                {"answer": "answer1", "selected": false, "correct": true},
+                {"answer": "answer2", "selected": false, "correct": false},
+                {"answer": "answer3", "selected": false, "correct": false},
+                {"answer": "answer4", "selected": false, "correct": false}
             ]
         },
         {
             "id": 2,
             "question": "test question 2",
-            "answers": {
-                "answer1": "answer1",
-                "answer2": "answer2",
-                "answer3": "answer3",
-                "answer4": "answer4"
-            }
+            "answers": [
+                {"answer": "answer5", "selected": false, "correct": true},
+                {"answer": "answer6", "selected": false, "correct": false},
+                {"answer": "answer7", "selected": false, "correct": false},
+                {"answer": "answer8", "selected": false, "correct": false}
+            ]
         },
         {
             "id": 3,
             "question": "test question 3",
-            "answers": {
-                "answer1": "answer1",
-                "answer2": "answer2",
-                "answer3": "answer3",
-                "answer4": "answer4"
-            }
+            "answers": [
+                {"answer": "answer9", "selected": false, "correct": true},
+                {"answer": "answer10", "selected": false, "correct": false},
+                {"answer": "answer11", "selected": false, "correct": false},
+                {"answer": "answer12", "selected": false, "correct": false}
+            ]
         },
         {
             "id": 4,
             "question": "test question 4",
-            "answers": {
-                "answer1": "answer1",
-                "answer2": "answer2",
-                "answer3": "answer3",
-                "answer4": "answer4"
-            }
+            "answers": [
+                {"answer": "answer13", "selected": false, "correct": true},
+                {"answer": "answer14", "selected": false, "correct": false},
+                {"answer": "answer15", "selected": false, "correct": false},
+                {"answer": "answer16", "selected": false, "correct": false}
+            ]
         }
     ]
 }
