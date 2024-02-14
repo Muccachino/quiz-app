@@ -2,7 +2,7 @@ import { useEffect, useContext } from "react";
 import { IQuestion } from "../ts/interfaces/globalInterfaces";
 import QuestionContext from "../ts/QuestionContext";
 
-export default function useQuestions() {
+export default function useQuestions(): [IQuestion[], (updatedQuestions: IQuestion[]) => void] {
     const [questions, setQuestions] = useContext(QuestionContext);
 
     useEffect(() => {

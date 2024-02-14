@@ -6,11 +6,11 @@ import { useRef, useState } from "react";
 
 interface Props {
     answers: IAnswer[]
-    setCounter: (answer: IAnswer[]) => void
+    setNewAnswers: (answer: IAnswer[]) => void
 }
 
 
-export default function AnswerListItem({ answers, setCounter }: Props) {
+export default function AnswerListItem({ answers, setNewAnswers }: Props) {
 
     const [answerList, setAnswerList] = useState(answers);
     const iconCounter = useRef(0);
@@ -44,7 +44,7 @@ export default function AnswerListItem({ answers, setCounter }: Props) {
             {answerList.map((answer: IAnswer) => {
                 setIcons()
                 return (
-                    <ListItem sx={{cursor: "pointer"}} key={answer.answer} onClick={() => {clickAnswer(answer); setCounter(answerList)}} className={answer.selected ? "selected" : ""}>
+                    <ListItem sx={{cursor: "pointer"}} key={answer.answer} onClick={() => {clickAnswer(answer); setNewAnswers(answerList)}} className={answer.selected ? "selected" : ""}>
                         <ListItemAvatar>
                         <Avatar>
                         <Icon path={icon.current} size={2} />
