@@ -17,23 +17,30 @@ const Demo = styled('div')(({ theme }) => ({
 
 
 export default function QuestionsList() {
-  const [questions, setQuestions] = useQuestions()
+  const [questions] = useQuestions()
   const [allCorrect, setAllCorrect] = useState(0);
+  const [allQuestions, setAllQuestions] = useState(questions);
 
 
-  const setCounter = ( answerList: IAnswer[]) => {
-    let newCorrect: number = 0
-    answerList.map(answer => {
-      if (answer.correct && answer.selected) {
-        (setQuestions as React.Dispatch<React.SetStateAction<IQuestion[]>>)((prev: IQuestion) => {
-          prev.answers.map(item => {
-            item.answer === answer.answer? {...item, selected: true}
-          })
-        }) 
+  const setCounter = (answerList: IAnswer[]) => {
+    const updatedQuestions: IQuestion[] | null = allQuestions!.map(questions => {
+      return {
+        ...questions,
+        answers: questions.answers.map(oldAnswer => 
+          answerList.find(newAnswer => newAnswer.answer === oldAnswer.answer) || oldAnswer
+        )
       }
     })
-    setAllCorrect(newCorrect)
+    setAllQuestions(updatedQuestions)
 
+    let newCounter = 0;
+    allQuestions?.map(questions => {
+      questions.answers.map(answer => {
+        if (answer.correct === answer.selected) {
+          newCounter += 1
+    }})
+    })
+    setAllCorrect(newCounter);
   }
 
 
@@ -47,7 +54,7 @@ export default function QuestionsList() {
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
                         {item.question}
                     </Typography>
-                    <AnswerListItem answers={item.answers} setCounter={setCounter}/>
+                    <AnswerListItem answers={item.answers} setCounter={setCounter} allQuestions={allQuestions}/>
                   </div>
                 )
             })}

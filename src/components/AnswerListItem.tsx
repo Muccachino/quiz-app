@@ -1,12 +1,13 @@
 import { ListItem, ListItemAvatar, Avatar, ListItemText, List } from "@mui/material"
 import Icon from '@mdi/react';
 import { mdiAlphaA, mdiAlphaB, mdiAlphaC, mdiAlphaD } from '@mdi/js';
-import { IAnswer} from "../ts/interfaces/globalInterfaces";
+import { IAnswer, IQuestion} from "../ts/interfaces/globalInterfaces";
 import { useRef, useState } from "react";
 
 interface Props {
     answers: IAnswer[]
     setCounter: (answer: IAnswer[]) => void
+    allQuestions: IQuestion[] | null
 }
 
 

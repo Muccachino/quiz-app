@@ -24,5 +24,10 @@ export default function useQuestions() {
         connect();
       }, [setQuestions]);
 
-      return [questions, setQuestions];
+
+      const changeQuestions = (updatedQuestions: IQuestion[]) => {
+        setQuestions(updatedQuestions)
+      }
+
+      return [questions, changeQuestions];
 }
