@@ -14,33 +14,34 @@ const Demo = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
+type ChangeType = (updatedQuestions: IQuestion[]) => void
 
 
 export default function QuestionsList() {
-  const [questions] = useQuestions()
+  const [questions, changeQuestions] = useQuestions()
   const [allCorrect, setAllCorrect] = useState(0);
-  const [allQuestions, setAllQuestions] = useState(questions);
 
 
   const setCounter = (answerList: IAnswer[]) => {
-    const updatedQuestions: IQuestion[] | null = allQuestions!.map(questions => {
+    const updatedQuestions: IQuestion[] | null = questions?.map((question: IQuestion) => {
       return {
-        ...questions,
-        answers: questions.answers.map(oldAnswer => 
-          answerList.find(newAnswer => newAnswer.answer === oldAnswer.answer) || oldAnswer
+        ...question,
+        answers: question.answers.map((oldAnswer: IAnswer) => 
+          answerList.find((newAnswer: IAnswer) => newAnswer.answer === oldAnswer.answer) || oldAnswer
         )
       }
     })
-    setAllQuestions(updatedQuestions)
 
-    let newCounter = 0;
+    (changeQuestions as ChangeType)(updatedQuestions)
+
+/*     let newCounter = 0;
     allQuestions?.map(questions => {
       questions.answers.map(answer => {
         if (answer.correct === answer.selected) {
           newCounter += 1
     }})
     })
-    setAllCorrect(newCounter);
+    setAllCorrect(newCounter); */
   }
 
 
@@ -54,7 +55,7 @@ export default function QuestionsList() {
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
                         {item.question}
                     </Typography>
-                    <AnswerListItem answers={item.answers} setCounter={setCounter} allQuestions={allQuestions}/>
+                    <AnswerListItem answers={item.answers} setCounter={setCounter}/>
                   </div>
                 )
             })}
