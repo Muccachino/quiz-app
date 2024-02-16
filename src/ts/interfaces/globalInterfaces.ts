@@ -10,3 +10,7 @@ export interface IQuestion {
     answers: IAnswer[]
 }
 
+export type QuestionInput = Omit<IQuestion, "id"> & {
+    id?: number
+}
+

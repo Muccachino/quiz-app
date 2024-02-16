@@ -7,6 +7,7 @@ import AnswerListItem from './AnswerListItem';
 import { useEffect, useState } from 'react';
 import { IAnswer, IQuestion } from '../ts/interfaces/globalInterfaces';
 import ResultForm from './ResultForm';
+import EditQuestions from './EditQuestions';
 
 
 
@@ -18,9 +19,13 @@ const Demo = styled('div')(({ theme }) => ({
 export default function QuestionsList() {
   const [questions, changeQuestions] = useQuestions()
   const [allCorrect, setAllCorrect] = useState(0);
+  const [isVisible, setIsVisible] = useState(true)
 
+  const toggleVisibility = () => {
+    setIsVisible(prevVisible =>  !prevVisible)
+  }
 
-  const setNewAnswers = (answerList: IAnswer[]) => {
+  const setSelectedAnswer = (answerList: IAnswer[]) => {
     const updatedQuestions: IQuestion[] = questions?.map((question: IQuestion) => {
       return {
         ...question,
@@ -49,6 +54,7 @@ export default function QuestionsList() {
 
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
+        {isVisible &&
         <Grid item xs={12} md={6}>
           <Demo>
           {questions?.map((item) => {
@@ -57,14 +63,15 @@ export default function QuestionsList() {
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
                         {item.question}
                     </Typography>
-                    <AnswerListItem answers={item.answers} setNewAnswers={setNewAnswers}/>
+                    <AnswerListItem answers={item.answers} setSelectedAnswer={setSelectedAnswer}/>
                   </div>
                 )
             })}
-          <Button sx={{border: "1px solid black"}}>Submit</Button>
+          <Button sx={{border: "1px solid black"}} onClick={toggleVisibility}>Submit</Button>
           </Demo>
-        </Grid>
-      <ResultForm correctAnswers={allCorrect}/>
+        </Grid>}
+      {!isVisible && <ResultForm correctAnswers={allCorrect} amountQuestions={questions.length}/>}
+      <EditQuestions/>
     </Box>
   );
 }
