@@ -85,7 +85,7 @@ export default function useQuestions(): [
           prevQuestions?.map(prevQuestion => {
             prevQuestion.answers.map(prevAnswers => {
               if(prevAnswers.answer === editedAnswer.answer) {
-                return editedAnswer
+                return prevAnswers.correct = !editedAnswer.correct
               }
               return prevAnswers
             })

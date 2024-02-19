@@ -1,4 +1,4 @@
-import { Grid, Card, CardContent, Typography, CardActions, IconButton, Fab } from "@mui/material"
+import { Grid, Card, CardContent, Typography, CardActions, IconButton, Fab, Button } from "@mui/material"
 import { Edit, Add } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useQuestions from "./useQuestions";
@@ -8,7 +8,12 @@ import DeleteDialog from "./DeleteDialog";
 import EditQuestionsForm from "./EditQuestionsForm";
 import AddQuestionsForm from "./AddQuestionForm";
 
-export default function EditQuestions() {
+
+interface Props {
+  backToStart: () => void
+}
+
+export default function EditQuestions({backToStart}: Props) {
     const [questions, , handleDelete, handleAdd ,handleEdit] = useQuestions()
     const [deleteDialog, setDeleteDialog] = useState<{
       open: boolean;
@@ -52,10 +57,10 @@ export default function EditQuestions() {
 
     return(
       <>
-      <Grid item>
+      <Grid item sx={{display: "grid", padding: "0 25%"}}>
         {questions.map(question => {
           return (
-              <Card key={question.question}>
+              <Card sx={{marginBottom: "10px"}} key={question.question}>
               <CardContent>
                 <Typography variant="body1" component="p">
                   {question.question}
@@ -78,8 +83,11 @@ export default function EditQuestions() {
           )
         })}  
         
-          <Fab color="primary" onClick={() => handleAddDialog(true, undefined)}>
-              <Add />
+          <Fab 
+            sx={{margin: "20px auto"}}
+            color="primary" 
+            onClick={() => handleAddDialog(true, undefined)}>
+              <Add/>
           </Fab>
       </Grid>
       <DeleteDialog 
@@ -112,6 +120,7 @@ export default function EditQuestions() {
         onClose={() => setAddFormDialog({open: false, question: undefined})}
         question={addFormDialog.question}
       />
+      <Button onClick={backToStart}>Back</Button>
     </>
     )
 }

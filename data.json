@@ -38,7 +38,7 @@
         {
           "answer": "answer6",
           "selected": false,
-          "correct": true
+          "correct": false
         },
         {
           "answer": "answer7",

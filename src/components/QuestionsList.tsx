@@ -4,10 +4,9 @@ import Grid from '@mui/material/Grid';
 import { Typography, Button } from '@mui/material';
 import useQuestions from './useQuestions';
 import AnswerListItem from './AnswerListItem';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IAnswer, IQuestion } from '../ts/interfaces/globalInterfaces';
 import ResultForm from './ResultForm';
-import EditQuestions from './EditQuestions';
 
 
 
@@ -34,12 +33,8 @@ export default function QuestionsList() {
         )
       }
     })
-
     changeQuestions(updatedQuestions)
 
-  }
-
-  useEffect(() => {
     let newCounter = 0;
     questions?.map(question => {
       question.answers.map(answer => {
@@ -48,12 +43,24 @@ export default function QuestionsList() {
     }})
     })
     setAllCorrect(newCounter);
-  }, [questions])
+
+  }
+
+/*   useEffect(() => {
+    let newCounter = 0;
+    questions?.map(question => {
+      question.answers.map(answer => {
+        if (answer.correct && answer.selected) {
+          newCounter += 1
+    }})
+    })
+    setAllCorrect(newCounter);
+  }, [questions]) */
 
 
 
   return (
-    <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
+    <Box sx={{ flexGrow: 1, textAlign: "center", padding: "0 25% "}}>
         {isVisible &&
         <Grid item xs={12} md={6}>
           <Demo>
@@ -71,7 +78,6 @@ export default function QuestionsList() {
           </Demo>
         </Grid>}
       {!isVisible && <ResultForm correctAnswers={allCorrect} amountQuestions={questions.length}/>}
-      <EditQuestions/>
     </Box>
   );
 }
