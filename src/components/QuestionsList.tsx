@@ -20,7 +20,18 @@ export default function QuestionsList() {
   const [allCorrect, setAllCorrect] = useState(0);
   const [isVisible, setIsVisible] = useState(true)
 
-  const toggleVisibility = () => {
+  const showResult = () => {
+    let newCounter = 0;
+    questions?.forEach(question => {
+      console.log(question.answers.some(answer => (answer.correct && answer.selected)))
+      if(question.answers.some(answer => (answer.correct && answer.selected))) {
+        console.log("here")
+        newCounter +=1
+      }
+    })
+
+    setAllCorrect(newCounter);
+
     setIsVisible(prevVisible =>  !prevVisible)
   }
 
@@ -33,30 +44,9 @@ export default function QuestionsList() {
         )
       }
     })
+    console.log(updatedQuestions);
     changeQuestions(updatedQuestions)
-
-    let newCounter = 0;
-    questions?.map(question => {
-      question.answers.map(answer => {
-        if (answer.correct && answer.selected) {
-          newCounter += 1
-    }})
-    })
-    setAllCorrect(newCounter);
-
   }
-
-/*   useEffect(() => {
-    let newCounter = 0;
-    questions?.map(question => {
-      question.answers.map(answer => {
-        if (answer.correct && answer.selected) {
-          newCounter += 1
-    }})
-    })
-    setAllCorrect(newCounter);
-  }, [questions]) */
-
 
 
   return (
@@ -74,7 +64,7 @@ export default function QuestionsList() {
                   </div>
                 )
             })}
-          <Button sx={{border: "1px solid black"}} onClick={toggleVisibility}>Submit</Button>
+          <Button sx={{border: "1px solid black"}} onClick={showResult}>Submit</Button>
           </Demo>
         </Grid>}
       {!isVisible && <ResultForm correctAnswers={allCorrect} amountQuestions={questions.length}/>}

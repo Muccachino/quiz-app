@@ -51,19 +51,37 @@ export default function EditQuestionsForm ({open, question, onClose, onSave}: Pr
                         <TextField
                         {...register(`answers.${1}.answer`)}
                         label="Answer 2"/>
-                        <Checkbox title="Correct?" {...register(`answers.${1}.correct`)} checked={question?.answers[1].correct}/>
+                        <Checkbox title="Correct?" 
+                            {...register(`answers.${1}.correct`)}
+                            onChange={
+                                (e) => {
+                                    setValue(`answers.${1}.correct`, e.target.checked ? true : false);
+                                handleEditForm(question!.answers[1])}} 
+                            checked={question?.answers[1].correct}/>
                     </div>
                     <div style={{marginBottom: "20px"}}>
                         <TextField
                         {...register(`answers.${2}.answer`)}
                         label="Answer 3"/>
-                        <Checkbox title="Correct?" {...register(`answers.${2}.correct`)} checked={question?.answers[2].correct}/>
+                        <Checkbox title="Correct?" 
+                            {...register(`answers.${2}.correct`)}
+                            onChange={
+                                (e) => {
+                                    setValue(`answers.${2}.correct`, e.target.checked ? true : false);
+                                handleEditForm(question!.answers[2])}} 
+                            checked={question?.answers[2].correct}/>
                     </div>
                     <div style={{marginBottom: "20px"}}>
                         <TextField
                         {...register(`answers.${3}.answer`)}
                         label="Answer 4"/>
-                        <Checkbox title="Correct?" {...register(`answers.${3}.correct`)} checked={question?.answers[3].correct}/>
+                        <Checkbox title="Correct?" 
+                            {...register(`answers.${3}.correct`)}
+                            onChange={
+                                (e) => {
+                                    setValue(`answers.${3}.correct`, e.target.checked ? true : false);
+                                handleEditForm(question!.answers[3])}} 
+                            checked={question?.answers[3].correct}/>
                     </div>
                     <DialogActions>
                         <Button color="primary" type="submit">
